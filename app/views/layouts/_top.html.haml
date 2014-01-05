@@ -1,0 +1,33 @@
+/ === Top ===
+.top
+  .container
+    %ul.loginbar.pull-right
+      %li
+        %i.icon-globe
+        %a
+          Languages
+          %i.icon-sort-up
+        %ul.nav-list
+          %li.active
+            %a{:href => "#"} English
+            %i.icon-ok
+          %li
+            %a{:href => "#"} Spanish
+          %li
+            %a{:href => "#"} Russian
+          %li
+            %a{:href => "#"} German
+      %li.devider &nbsp;
+      %li
+        %a.login-btn{:href => "page_faq.html"} Help
+      %li.devider &nbsp;
+      - if user_signed_in?
+        %li
+          = link_to 'Logout', destroy_user_session_path, :method=>'delete', :class => 'login-btn'
+      - else
+        %li
+          = link_to 'Login', new_user_session_path, :class => "login-btn"
+        %li.devider &nbsp;
+        %li
+          = link_to 'SignUp',new_user_registration_path, :class => 'login-btn'
+/ /top

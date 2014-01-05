@@ -1,0 +1,18 @@
+/ === Breadcrumbs ===
+.breadcrumbs.margin-bottom-40
+  .container
+    %h1.color-green.pull-left 
+      = page
+    %ul.pull-right.breadcrumb
+      %li
+        %a{:href => "index.html"} Home
+        %span.divider /
+      %li
+        %a{:href => ""}
+          = menu
+        %span.divider /
+      %li.active
+        = page
+  / /container
+/ /breadcrumbs
+/ === End Breadcrumbs ===

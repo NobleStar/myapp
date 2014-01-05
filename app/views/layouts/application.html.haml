@@ -1,0 +1,30 @@
+!!!
+%html
+  %head
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
+    %title= content_for?(:title) ? yield(:title) : 'Myapp'
+    %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Rails Unify Theme'}"}
+    = stylesheet_link_tag "application", media: "all"
+    = javascript_include_tag "application"
+    %link{:href=>"/assets/themes/default.css", :id=>"style_color", media: "all", rel:"stylesheet"}
+    = csrf_meta_tags
+  %body
+
+    = render 'layouts/style_switcher'
+    = render 'layouts/top'
+    = render 'layouts/header'
+    
+    = yield
+
+    = render 'layouts/footer'
+    = render 'layouts/copyright'
+
+    :javascript
+      jQuery(document).ready(function() {
+          App.init();
+          App.initSliders();
+          Index.initParallaxSlider();
+      });
+    /[if lt IE 9]
+      %script{:src => "/assets/js/respond.js"}
+    

@@ -1,0 +1,56 @@
+= render partial: "layouts/breadcrumb", locals: {menu: "Page", page: "Edit Account"}
+= render "layouts/messages"
+.container
+  .row-fluid.margin-bottom-10
+    = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:method => :put, :class => 'reg-page' }) do |f|
+      %h3 #{resource_name.to_s.humanize}
+      = f.error_notification
+      = display_base_errors resource
+      .controls
+        %label
+          First Name
+          %span.color-red *
+        = f.input_field :first_name, class: "input-xlarge span12", :autofocus => true, :required => true
+        %label Last Name
+        = f.input_field :last_name, class: "input-xlarge span12", :autofocus => true
+        %label
+          Email Address
+          %span.color-red *
+        = f.input_field :email, class: "input-xlarge span12", :autofocus => true, :required => true
+      .controls
+        .span6
+          %label
+            Password
+          = f.input_field :password, class: "input-xlarge span12", :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false
+        .span6
+          %label
+            Confirm Password
+          = f.input_field :password_confirmation, class: "input-xlarge span12", :required => false
+      .controls
+        %label
+          Current Password
+          %span.color-red *
+        = f.input_field :current_password, class: "input-xlarge span12", :hint => "we need your current password to confirm your changes", :required => true
+      .controls
+        = f.button :submit, 'Update', :class => 'btn-u pull-right'
+      %hr/
+      %p
+        Unhappy? #{link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete}.
+  / /row-fluid
+/ /container
+
+/ %h2
+/   Edit #{resource_name.to_s.humanize}
+/ = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-vertical' }) do |f|
+/   = f.error_notification
+/   = display_base_errors resource
+/   = f.input :name, :autofocus => true
+/   = f.input :email, :required => true
+/   = f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false
+/   = f.input :password_confirmation, :required => false
+/   = f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true
+/   = f.button :submit, 'Update', :class => 'btn-primary'
+/ %h3 Cancel my account
+/ %p
+/   Unhappy? #{link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete}.
+/ = link_to "Back", :back

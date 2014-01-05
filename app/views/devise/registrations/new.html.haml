@@ -1,0 +1,43 @@
+= render partial: "layouts/breadcrumb", locals: {menu: "Page", page: "Sign Up"}
+= render "layouts/messages"
+.container
+  .row-fluid.margin-bottom-10
+    = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'reg-page' }) do |f|
+      %h3 Register a new account
+      = f.error_notification
+      = display_base_errors resource
+      .controls
+        %label
+          First Name
+          %span.color-red *
+        = f.input_field :first_name, class: "input-xlarge span12", :autofocus => true
+        %label Last Name
+        = f.input_field :last_name, class: "input-xlarge span12", :autofocus => true
+        %label
+          Email Address
+          %span.color-red *
+        = f.input_field :email, class: "input-xlarge span12", :autofocus => true, :required => true
+      .controls
+        .span6
+          %label
+            Password
+            %span.color-red *
+          = f.input_field :password, class: "input-xlarge span12", :required => true
+        .span6
+          %label
+            Confirm Password
+            %span.color-red *
+          = f.input_field :password_confirmation, class: "input-xlarge span12", :required => true
+      .controls.form-inline
+        %label.checkbox
+          %input{:type => "checkbox"}>/
+          \&nbsp; I read
+          %a{:href => ""} Terms and Conditions
+        = f.button :submit, 'Sign Up', :class => 'btn-u pull-right'
+      %hr/
+      %p
+        Already Signed Up? Click
+        = link_to 'Sign In', new_user_session_path, :class => 'color-green'
+        to login your account.
+  / /row-fluid
+/ /container

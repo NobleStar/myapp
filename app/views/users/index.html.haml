@@ -1,0 +1,28 @@
+= render partial: 'layouts/breadcrumb', locals:{menu: 'Page', page:'Admin'}
+.container
+  .row_fluid
+    .span12
+      .headline
+        %h3 Users
+      %table.table.table-hover
+        %thead
+          %tr
+            %th #
+            %th Username
+            %th Email
+            %th Registered
+            %th Role
+            %th Change Role
+            %th Action
+        %tbody
+          - @users.each_with_index do |user, i|
+            %tr
+              %td= i + 1
+              %td= link_to(user.first_name + ' ' + user.last_name, user)
+              %td= user.email
+              %td= user.created_at.to_date
+              %td= user.roles.first.name.titleize unless user.roles.first.nil?
+              %td
+                %a.btn.btn-mini{"data-toggle" => "modal", :href => "#role-options-#{user.id}", :type => "button"} Change role
+                = render user
+              %td= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini') unless user == current_user

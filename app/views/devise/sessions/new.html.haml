@@ -1,0 +1,27 @@
+= render partial: "layouts/breadcrumb", locals: {menu: "Page", page: "Login"}
+= render "layouts/messages"
+.container
+  .row-fluid
+    = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'log-page' }) do |f|
+      %h3 Login to your account
+      .input-prepend
+        %span.add-on
+          %i.icon-user
+        = f.input_field :email, class: "input-xlarge", :autofocus => true, :placeholder => "Email"
+      .input-prepend
+        %span.add-on
+          %i.icon-lock
+        = f.input_field :password, class: "input-xlarge", :placeholder => "Password"
+      .controls.form-inline
+        %label.checkbox
+          = f.input_field :remember_me, :as => :boolean if devise_mapping.rememberable?
+          Stay Signed in
+        = f.button :submit, "Sign in", :class => 'btn-u pull-right'
+      %hr/
+      %h4 Forget your Password ?
+      %p
+        no worries,
+        - if devise_mapping.recoverable? && controller_name != 'passwords'
+          = link_to "click here", new_password_path(resource_name), :class => "color-green"
+        to reset your password.
+
